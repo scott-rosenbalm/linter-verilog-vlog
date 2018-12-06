@@ -50,10 +50,10 @@
     "type": "git",
     "url": "https://github.com/scott-rosenbalm/linter-verilog-vlog.git"
   },
-  "version": "0.0.1",
+  "version": "1.0.0",
   "apmInstallSource": {
     "type": "git",
     "source": "https://github.com/scott-rosenbalm/linter-verilog-vlog.git",
-    "sha": "18447bcd8c916492a4239546a3f02adc54344d76"
+    "sha": "0b079295993dcc2d0e67a8ca4ddcf1dd066c028d"
   }
 }
