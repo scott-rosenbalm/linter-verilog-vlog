@@ -6,9 +6,13 @@ lint = (editor) ->
   regex = /\*\*([^:]+):[^:]*:[^:]*\(([^\)]+)\):(.+)/
   file = editor.getPath()
   dirname = path.dirname(file)
+  proj_path = atom.project.relativizePath(file)[0]
 
-  args = ("#{arg}" for arg in atom.config.get('linter-verilog-vlog.extraOptions'))
+  args = ("#{arg}" for arg in atom.config.get('linter-verilog-vlog.extraVlogOptions'))
   args = args.concat ['-quiet', '-lint', file, '-work', atom.config.get('linter-verilog-vlog.workDir')]
+  args = args.concat ("+incdir+#{proj_path}#{arg}" for arg in atom.config.get('linter-verilog-vlog.includePathsRelativeToTheProject'))
+  args = args.concat ("+incdir+#{dirname}#{arg}" for arg in atom.config.get('linter-verilog-vlog.includePathsRelativeToTheSourceFile'))
+
   helpers.exec('vlog', args, {stream: 'both'}).then (output) ->
     lines = output.stdout.split("\n")
     messages = []
@@ -20,6 +24,8 @@ lint = (editor) ->
       parts = line.match(regex)
       if !parts || parts.length != 4
         console.debug("Droping line:", line)
+        if line.match(/\*\* Error/)
+          atom.notifications.addError("linter-verilog-vlog: vlog command died with this message: #{line}", {'dismissable': true})
       else
         message =
           filePath: file
@@ -34,10 +40,18 @@ lint = (editor) ->
 
 module.exports =
   config:
-    extraOptions:
+    extraVlogOptions:
       type: 'array'
       default: []
-      description: 'Comma separated list of vlog options'
+      description: 'Comma separated list of vlog options.'
+    includePathsRelativeToTheProject:
+      type: 'array'
+      default: []
+      description: 'Comma separated list of include paths, relative to the Atom project root. Start these with a slash please.'
+    includePathsRelativeToTheSourceFile:
+      type: 'array'
+      default: []
+      description: 'Comma separated list of include paths, relative to the source file being linted. Start these with a slash please.'
     workDir:
       type: 'string'
       default: 'D:\\_atom_linter_vlog_lib_delete_me'
