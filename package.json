@@ -50,7 +50,7 @@
     "type": "git",
     "url": "https://github.com/scott-rosenbalm/linter-verilog-vlog.git"
   },
-  "version": "0.0.0",
+  "version": "0.0.1",
   "apmInstallSource": {
     "type": "git",
     "source": "https://github.com/scott-rosenbalm/linter-verilog-vlog.git",
