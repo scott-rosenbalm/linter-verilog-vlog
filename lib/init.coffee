@@ -8,8 +8,8 @@ lint = (editor) ->
   dirname = path.dirname(file)
   proj_path = atom.project.relativizePath(file)[0]
 
-  args = ("#{arg}" for arg in atom.config.get('linter-verilog-vlog.extraVlogOptions'))
-  args = args.concat ['-quiet', '-lint', file, '-work', atom.config.get('linter-verilog-vlog.workDir')]
+  args = ("#{arg}" for arg in atom.config.get('linter-verilog-vlog.vlogOptions'))
+  args = args.concat [file, '-work', atom.config.get('linter-verilog-vlog.workDir')]
   args = args.concat ("+incdir+#{proj_path}\/#{arg}" for arg in atom.config.get('linter-verilog-vlog.includePathsRelativeToTheProject'))
   args = args.concat ("+incdir+#{dirname}\/#{arg}" for arg in atom.config.get('linter-verilog-vlog.includePathsRelativeToTheSourceFile'))
 
@@ -20,7 +20,7 @@ lint = (editor) ->
       if line.length == 0
         continue;
 
-      console.log(line)
+      console.debug(line)
       parts = line.match(regex)
       if !parts || parts.length != 4
         console.debug("Droping line:", line)
@@ -40,9 +40,9 @@ lint = (editor) ->
 
 module.exports =
   config:
-    extraVlogOptions:
+    vlogOptions:
       type: 'array'
-      default: []
+      default: ['-lint', '-quiet']
       description: 'Comma separated list of vlog options.'
     includePathsRelativeToTheProject:
       type: 'array'
