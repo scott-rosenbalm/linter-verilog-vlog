@@ -1,59 +1,27 @@
 {
-  "_id": "linter-verilog-vlog@0.0.0",
-  "_inCache": true,
-  "_installable": true,
-  "_location": "/linter-verilog-vlog",
-  "_requiredBy": [
-    "#USER"
-  ],
-  "bugs": {
-    "url": ""
-  },
-  "dependencies": {
-    "atom-linter": "^4.5.0",
-    "atom-package-deps": "^4.0.1"
-  },
+  "name": "linter-verilog-vlog",
+  "main": "./lib/init",
+  "version": "2.0.0",
   "description": "Atom linter for Verilog, using Mentor ModelSim/QuestaSim vlog compiler.",
-  "devDependencies": {
-    "babel-eslint": "^5.0.0",
-    "coffeelint": "^1.14.2",
-    "eslint": "^2.2.0",
-    "eslint-config-airbnb": "^6.0.2",
-    "eslint-plugin-react": "^4.1.0"
-  },
-  "engines": {
-    "atom": ">=1.0.0 <2.0.0"
-  },
   "keywords": [
     "verilog",
     "vlog",
     "linter",
     "compiler"
   ],
+  "repository": "https://github.com/atom/linter-verilog-vlog2",
   "license": "MIT",
-  "main": "./lib/init",
-  "name": "linter-verilog-vlog",
-  "optionalDependencies": {},
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
   "package-deps": [
     "linter"
-  ],
+  ],  
   "providedServices": {
     "linter": {
       "versions": {
-        "1.0.0": "provideLinter"
+        "2.0.0": "provideLinter"
       }
     }
-  },
-  "readme": "#linter-verilog-vlog\n\nAtom linter for Verilog, using Mentor ModelSim/QuestaSim vlog compiler.  \n\n\n#Installation\n\n1. Install Mentor Graphics ModelSim/QuestaSim.\n\n2. Install atom package linter-verilog-vlog.\n",
-  "readmeFilename": "README.md",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/scott-rosenbalm/linter-verilog-vlog.git"
-  },
-  "version": "1.0.1",
-  "apmInstallSource": {
-    "type": "git",
-    "source": "https://github.com/scott-rosenbalm/linter-verilog-vlog.git",
-    "sha": "6084e0db7e1fb8371736f44277c5f0dbfce8c1db"
   }
 }
